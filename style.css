@@ -1,4 +1,4 @@
-img {
+#gallery img {
 	width: 25vw;
 	height: auto;
 }
@@ -8,6 +8,23 @@ img:hover {
 	box-shadow: 10px 10px 20px #7a9eff, -10px -10px 20px #f8c6ff;
 }
 
+#view {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	backdrop-filter: blur(5px);
+	display: flex;
+	justify-content: center;
+	display: none;
+}
+
+#imageview {
+	margin: 5vh 5vw;
+	max-width: 90vw;
+	max-height: 90vh;
+}
 
 body {
 	background: linear-gradient(to top, #fbc2eb, #a6c1ee);

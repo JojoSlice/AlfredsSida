@@ -30,7 +30,7 @@
 				class="nav-links md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
 				<ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
 					<li>
-						<a class="hover:text-gray-400" href="#">Knapp 1</a>
+						<a class="hover:text-gray-400" href="index.html">Alfred</a>
 					</li>
 					<li>
 						<a class="hover:text-gray-400" href="#">Knapp 2</a>
@@ -52,7 +52,7 @@
 			</div>
 		</nav>
 	</header>
-	<main class="flex justify-center mt-[20px]">
+	<main id="gallery" class="flex justify-center mt-[20px]">
 		<div class="flex flex-row w-5/6">
 			<div class="flex flex-col flex-nowrap">
 				<div class="p-2">
@@ -65,6 +65,9 @@
 
 				<div class="p-2">
 					<img src="images/Alfred/20211021_183245.jpg">
+				</div>
+				<div class="p-2">
+					<img src="images/Alfred/2418920711_830455.jpg">
 				</div>
 			</div>
 			<div class="flex flex-col flex-nowrap">
@@ -79,6 +82,12 @@
 				<div class="p-2">
 					<img src="images/Alfred/20220522_214922.jpg">
 				</div>
+				<div class="p-2">
+					<img src="images/Alfred/20250316_130348.jpg">
+				</div>
+				<div class="p-2">
+					<img src="images/Alfred/20210930_174844.jpg">
+				</div>
 			</div>
 			<div class="flex flex-col flex-nowrap">
 				<div class="p-2">
@@ -92,16 +101,16 @@
 				<div class="p-2">
 					<img src="images/Alfred/20220519_175116.jpg">
 				</div>
+				<div class="p-2">
+					<img src="images/Alfred/20211109_065419.jpg">
+				</div>
 			</div>
 		</div>
 	</main>
-	<script>
-		const navLinks = document.querySelector('.nav-links')
-		function onToggleMenu(e) {
-			e.src = e.src.includes("menu.svg") ? "images/close.svg" : "images/menu.svg";
-			navLinks.classList.toggle('top-[9%]')
-		}
-	</script>
+	<div id="view">
+		<img onclick="closeView(this)" id="imageview" src="hide.jpg">
+	</div>
+	<script src="script.js"></script>
 </body>
 
 </html>
