@@ -1,8 +1,15 @@
 img {
-	width: auto;
-	height: 200px;
+	width: 25vw;
+	height: auto;
 }
 
+
 img:hover {
-	box-shadow: 10px 10px 20px black, -10px -10px 20px white;
+	box-shadow: 10px 10px 20px #7a9eff, -10px -10px 20px #f8c6ff;
+}
+
+
+body {
+	background: linear-gradient(to top, #fbc2eb, #a6c1ee);
+	background-attachment: fixed;
 }
