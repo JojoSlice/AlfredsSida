@@ -24,6 +24,8 @@ img:hover {
 	margin: 5vh 5vw;
 	max-width: 90vw;
 	max-height: 90vh;
+	width: auto;
+	height: auto;
 }
 
 body {
