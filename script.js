@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  initSwipeListeners();
+
   fetch("http://localhost:3000/bilder")
     .then((response) => response.json())
     .then((bilder) => {
@@ -13,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const img = document.createElement("img");
         img.src = `http://localhost:3000/${bild}`;
         img.alt = "bild";
+        img.id = index;
 
         bildBox.appendChild(img);
 
@@ -32,23 +35,84 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Fel vid hämtning:", error));
 });
 
+let startY = 0;
+let isTouch = false;
+let currentId = 1;
+
+function initSwipeListeners() {
+  const storBild = document.getElementById("imageview");
+
+  storBild.addEventListener("touchstart", function (e) {
+    isTouch = true;
+    startY = e.touches[0].clientY;
+  });
+
+  storBild.addEventListener("touchend", function (e) {
+    let endY = e.changedTouches[0].clientY;
+    handleSwipe(startY, endY);
+  });
+
+  storBild.addEventListener("mousedown", function (e) {
+    if (!isTouch) startY = e.clientY;
+    console.log("mousedown");
+  });
+
+  storBild.addEventListener("mouseup", function (e) {
+    console.log("mouseup");
+    if (!isTouch) {
+      let endY = e.clientY;
+      handleSwipe(startY, endY);
+    }
+  });
+}
+
 function onToggleView(bild) {
-  var storBild = document.getElementById("imageview");
-  if (storBild.src === bild.src) {
-    storBild.src = "hide.jpg";
-    storBild.style.display = "none";
-    view.style.display = "none";
-  } else {
-    storBild.src = bild.src;
-    storBild.style.display = "flex";
-    view.style.display = "flex";
+  const storBild = document.getElementById("imageview");
+  const view = document.getElementById("view");
+
+  storBild.src = bild.src;
+  view.style.display = "flex";
+  currentId = parseInt(bild.id);
+}
+
+function handleSwipe(startY, endY) {
+  let diffY = startY - endY;
+
+  console.log("swipe", startY, endY);
+
+  if (Math.abs(diffY) < 10) {
+    closeView();
+  }
+
+  if (diffY > 50) {
+    showNextImage();
+  } else if (diffY < -50) {
+    showPreviousImage();
   }
 }
 
-function closeView(e) {
+function showNextImage() {
+  const nextId = currentId + 1;
+  const nextBild = document.getElementById(nextId);
+  if (nextBild) {
+    currentId = nextId;
+    document.getElementById("imageview").src = nextBild.src;
+  }
+}
+
+function showPreviousImage() {
+  const prevId = currentId - 1;
+  const prevBild = document.getElementById(prevId);
+  if (prevBild) {
+    currentId = prevId;
+    document.getElementById("imageview").src = prevBild.src;
+  }
+}
+
+function closeView() {
+  console.log("closeView");
   if (view.style.display != "none") {
     view.style.display = "none";
-    e.src = "hide.jpg";
   }
 }
 
