@@ -10,14 +10,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
       bilder.forEach((bild, index) => {
         const bildBox = document.createElement("div");
-        bildBox.classList.add("p-2");
+        bildBox.classList.add("p-2", "relative", "inline-block", "bildBox");
 
         const img = document.createElement("img");
         img.src = `http://localhost:3000/${bild}`;
         img.alt = "bild";
         img.id = index;
 
+        const button = document.createElement("button");
+        button.classList.add("likeButton");
+
+        button.addEventListener("click", function () {
+          onLike(button);
+        });
+
+        const heart = document.createElement("img");
+        heart.id = `heart${index}`;
+        heart.src = "images/heart.svg";
+        heart.width = "3em";
+
+        button.appendChild(heart);
+
         bildBox.appendChild(img);
+        bildBox.appendChild(button);
 
         img.addEventListener("click", function () {
           onToggleView(this);
@@ -64,6 +79,15 @@ function initSwipeListeners() {
       handleSwipe(startY, endY);
     }
   });
+}
+
+function onLike(button) {
+  const heart = button.querySelector("img");
+  if (heart.src.includes("heartFilled.svg")) {
+    heart.src = "images/heart.svg";
+  } else {
+    heart.src = "images/heartFilled.svg";
+  }
 }
 
 function onToggleView(bild) {

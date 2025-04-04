@@ -3,8 +3,28 @@
 	height: auto;
 }
 
-img:hover {
+#gallery img:hover {
 	box-shadow: 10px 10px 20px #7a9eff, -10px -10px 20px #f8c6ff;
+}
+
+#gallery button:hover img {
+	box-shadow: none;
+}
+
+.bildBox:hover .likeButton {
+	display: block;
+}
+
+
+.likeButton {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	width: 36px;
+	height: 36px;
+	border: none;
+	border-radius: 50%;
+	display: none;
 }
 
 #view {
